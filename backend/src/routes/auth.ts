@@ -1,11 +1,13 @@
 import { Router, Request, Response } from 'express';
 import { body, validationResult } from 'express-validator';
 import * as authController from '../controllers/authController';
+import { loginRateLimiter } from '../middleware/rateLimiter';
 
 const router = Router();
 
 router.post(
   '/login',
+  loginRateLimiter,
   [
     body('email').isEmail().withMessage('Email inválido'),
     body('password').notEmpty().withMessage('Contraseña requerida'),
