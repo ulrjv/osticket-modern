@@ -19,7 +19,6 @@ const TicketsTable: React.FC<TicketsTableProps> = ({
   selectedIds,
   onSelectIds,
   onSort,
-  currentSort,
 }) => {
   const handleSelectAll = (checked: boolean) => {
     if (checked) {

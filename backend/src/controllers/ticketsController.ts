@@ -4,15 +4,6 @@ import { stringify } from 'csv-stringify/sync';
 
 const prisma = new PrismaClient();
 
-interface TicketFilters {
-  status?: string;
-  priority?: string;
-  assignedToId?: number;
-  fromDateString?: string;
-  toDateString?: string;
-  search?: string;
-}
-
 export const getTickets = async (req: Request, res: Response) => {
   try {
     const {
@@ -140,16 +131,6 @@ export const bulkUpdateTickets = async (req: Request, res: Response) => {
     }
 
     // Actualizar tickets
-    const updateData: Prisma.TicketUpdateManyArgs = {
-      where: {
-        id: { in: ticketIds },
-      },
-      data: {
-        status,
-        updatedAt: new Date(),
-      },
-    };
-
     // Si el estado es "closed", agregar fecha de cierre
     if (status === 'closed') {
       await prisma.ticket.updateMany({
