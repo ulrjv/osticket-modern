@@ -105,36 +105,6 @@ export const TestimoniosSection = () => {
             </button>
           </div>
         </div>
-
-        {/* All testimonials stacked for smaller screens */}
-        <div className="mt-12 grid md:hidden gap-6">
-          {testimonios.map((testimonio, index) => (
-            <motion.div
-              key={testimonio.id}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white rounded-xl p-6 shadow-md"
-            >
-              <p className="text-gray-700 mb-4 italic">
-                "{testimonio.contenido}"
-              </p>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-primary-600 rounded-full flex items-center justify-center">
-                  <span className="text-white font-bold">
-                    {testimonio.nombre.charAt(0)}
-                  </span>
-                </div>
-                <div>
-                  <h4 className="font-bold text-gray-900 text-sm">
-                    {testimonio.nombre}
-                  </h4>
-                  <p className="text-gray-600 text-xs">{testimonio.rol}</p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
       </div>
     </Section>
   );
